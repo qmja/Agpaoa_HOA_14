@@ -1,0 +1,25 @@
+---
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: install updates (Ubuntu)
+    tags: always
+    apt:
+      upgrade: dist
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: computer
+  become: true
+  roles:
+    - keystone
+    - glance
+    - nova
+
+- hosts: controller
+  become: true
+  roles:
+    - keystone
+    - glance
+    - nova

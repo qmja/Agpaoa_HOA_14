@@ -1,0 +1,11 @@
+- name: Installing Keystone
+  apt:
+    name: keystone
+    state: present
+    update_cache: yes
+
+- name: Restarting/starting Keystone
+  service:
+    name: apache2
+    state: restarted
+    enabled: yes
